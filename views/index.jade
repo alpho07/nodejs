@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h1= title
+  div.container(ng-controller='AppCtrl')
+     table.table.row-border.hover(datatable='ng')
+        thead
+          th Name
+          th Email 
+          th Number
+          th Action
+          th &nbsp;
+        tbody
+          tr 
+             td: input.form-control(type='text',placeholder='Enter Name', ng-model='contact.name')
+             td: input.form-control(type='text',placeholder='Enter Email', ng-model='contact.email')
+             td: input.form-control(type='text',placeholder='Enter Number', ng-model='contact.number')
+             td: button.btn.btn-success.btn-sm(ng-click='addContact()') Add Contact 
+                 button.btn.btn-info(ng-click='updateContact()') Update Contact 
+                 button.btn.btn-info(ng-click='clearContact()') Clear
+                
+          tr(ng-repeat='person in people')
+            td {{person.name}}
+            td {{person.email}}
+            td {{person.number}}
+            td: button.btn.btn-danger(ng-click='remove(person._id)') Delete
+                button.btn.btn-primary(ng-click='edit(person._id)') Edit
